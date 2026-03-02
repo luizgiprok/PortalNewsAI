@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.news-card {
+  @apply bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300;
+}
+
+.news-image {
+  @apply w-full h-48 object-cover;
+}
+
+.news-content {
+  @apply p-6;
+}
+
+.news-title {
+  @apply text-xl font-bold text-gray-900 mb-2 hover:text-primary-600 transition-colors;
+}
+
+.news-excerpt {
+  @apply text-gray-600 mb-4 line-clamp-3;
+}
+
+.news-meta {
+  @apply text-sm text-gray-500 flex items-center space-x-4;
+}
+
+.loading {
+  @apply animate-pulse;
+}
+
+.skeleton {
+  @apply bg-gray-200 rounded;
+}
+
+.error {
+  @apply bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded;
+}
+
+.success {
+  @apply bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded;
+}
