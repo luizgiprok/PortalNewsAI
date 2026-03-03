@@ -66,3 +66,5 @@ export function AdPlaceholder({ unit, className = '' }: AdProps) {
     </div>
   )
 }
+
+export default GoogleAd

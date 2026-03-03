@@ -11,28 +11,35 @@
     "export": "next export"
   },
   "dependencies": {
-    "next": "14.0.4",
-    "react": "^18",
-    "react-dom": "^18",
-    "axios": "^1.6.2",
-    "cheerio": "^1.0.0-rc.12",
-    "node-cron": "^3.0.3",
-    "typescript": "^5",
+    "@types/cheerio": "^0.22.35",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@types/cheerio": "^0.22.35",
-    "tailwindcss": "^3.4.1",
     "autoprefixer": "^10.4.16",
+    "axios": "^1.6.2",
+    "cheerio": "^1.0.0-rc.12",
+    "date-fns": "^2.30.0",
+    "lucide-react": "^0.576.0",
+    "next": "14.0.4",
+    "node-cron": "^3.0.3",
     "postcss": "^8.4.32",
+    "react": "^18",
+    "react-dom": "^18",
     "rss-parser": "^3.13.0",
-    "date-fns": "^2.30.0"
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   },
   "devDependencies": {
     "eslint": "^8",
     "eslint-config-next": "14.0.4"
   },
-  "keywords": ["noticias", "scraping", "nextjs", "react", "typescript"],
+  "keywords": [
+    "noticias",
+    "scraping",
+    "nextjs",
+    "react",
+    "typescript"
+  ],
   "author": "Leandro",
   "license": "MIT"
 }

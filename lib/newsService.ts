@@ -99,7 +99,7 @@ export class NewsService {
     return this.getMockNews(source.category, source.name)
   }
 
-  private extractImageFromContent(content: string): string {
+  private extractImageFromContent(content: string | undefined): string {
     if (!content) return `https://picsum.photos/seed/default/400/250.jpg`
     
     const imgMatch = content.match(/<img[^>]+src="([^">]+)"/)

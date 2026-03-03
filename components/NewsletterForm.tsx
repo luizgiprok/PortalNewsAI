@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { Mail, Check, AlertCircle } from 'lucide-react'
 import { NewsletterSubscriber } from '@/types'
 
