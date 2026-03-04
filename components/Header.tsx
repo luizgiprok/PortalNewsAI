@@ -33,6 +33,9 @@ export default function Header() {
             <Link href="/politica" className="text-gray-700 hover:text-primary-600 transition-colors">
               Política
             </Link>
+            <Link href="/admin" className="text-gray-700 hover:text-primary-600 transition-colors">
+              Admin
+            </Link>
           </nav>
 
           {/* Mobile menu button */}
