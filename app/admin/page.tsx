@@ -21,7 +21,8 @@ export default function AdminDashboard() {
     name: '',
     description: '',
     category: 'geral',
-    conditions: { keywords: [], sources: [] }
+    conditions: { keywords: [], sources: [] },
+    active: true
   })
 
   const handleCreateSegment = async (e: React.FormEvent) => {
@@ -32,7 +33,8 @@ export default function AdminDashboard() {
         name: '',
         description: '',
         category: 'geral',
-        conditions: { keywords: [], sources: [] }
+        conditions: { keywords: [], sources: [] },
+        active: true
       })
       getSegments() // Refresh segments
     } catch (err) {

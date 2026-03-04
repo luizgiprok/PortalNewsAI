@@ -6,8 +6,8 @@ import NewsGrid from '@/components/NewsGrid'
 import LoadingSpinner from '@/components/LoadingSpinner'
 import HeroSection from '@/components/HeroSection'
 import NewsletterPreferences from '@/components/NewsletterPreferences'
-import useFeaturedNews from '@/hooks/useNews'
-import useLatestNews from '@/hooks/useNews'
+import { useFeaturedNews } from '@/hooks/useNews'
+import { useLatestNews } from '@/hooks/useNews'
 import { useNewsletterStats } from '@/hooks/useNewsletter'
 
 export default function HomePage() {
