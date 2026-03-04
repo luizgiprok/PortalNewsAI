@@ -202,13 +202,6 @@ export function useNewsletter() {
     getStats()
   }, [])
 
-  // Export stats for direct use
-  const useNewsletterStats = () => {
-    return { stats, loading: loading, error }
-  }
-
-  export { useNewsletterStats }
-
   return {
     // State
     loading,
@@ -229,4 +222,49 @@ export function useNewsletter() {
     // Reset error
     clearError: () => setError(null),
   }
+}
+
+// Separate hook for stats
+export function useNewsletterStats() {
+  const [stats, setStats] = useState<NewsletterStats | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const getStats = async () => {
+    try {
+      setLoading(true)
+      setError(null)
+
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          action: 'get_stats',
+        }),
+      })
+
+      const result: NewsletterAPIResponse = await response.json()
+
+      if (result.success) {
+        setStats(result.data)
+        return result.data
+      } else {
+        throw new Error(result.error || 'Falha ao buscar estatísticas')
+      }
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Erro desconhecido'
+      setError(errorMessage)
+      throw err
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    getStats()
+  }, [])
+
+  return { stats, loading, error }
 }

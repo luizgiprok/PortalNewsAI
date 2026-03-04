@@ -35,67 +35,67 @@ export async function GET(request: NextRequest) {
       { status: 500 }
     )
   }
+}
 
-  export async function POST(request: NextRequest) {
-    try {
-      const body = await request.json()
-      const { action, email, preferences, segment, campaign } = body
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json()
+    const { action, email, preferences, segment, campaign } = body
 
-      switch (action) {
-        case 'subscribe':
-          if (!email || !preferences) {
-            return NextResponse.json(
-              { success: false, error: 'Email and preferences are required' },
-              { status: 400 }
-            )
-          }
-          
-          const user = await newsletterService.updateUserPreferences(email, preferences)
-          return NextResponse.json({ success: true, data: user })
-
-        case 'create_segment':
-          if (!segment) {
-            return NextResponse.json(
-              { success: false, error: 'Segment data is required' },
-              { status: 400 }
-            )
-          }
-          
-          const newSegment = await newsletterService.createSegment(segment)
-          return NextResponse.json({ success: true, data: newSegment })
-
-        case 'create_campaign':
-          if (!campaign) {
-            return NextResponse.json(
-              { success: false, error: 'Campaign data is required' },
-              { status: 400 }
-            )
-          }
-          
-          const newCampaign = await newsletterService.createCampaign(campaign)
-          return NextResponse.json({ success: true, data: newCampaign })
-
-        case 'get_stats':
-          const stats = await newsletterService.getNewsletterStats()
-          return NextResponse.json({ success: true, data: stats })
-
-        default:
+    switch (action) {
+      case 'subscribe':
+        if (!email || !preferences) {
           return NextResponse.json(
-            { success: false, error: 'Action not supported' },
+            { success: false, error: 'Email and preferences are required' },
             { status: 400 }
           )
-      }
+        }
+        
+        const user = await newsletterService.updateUserPreferences(email, preferences)
+        return NextResponse.json({ success: true, data: user })
 
-    } catch (error) {
-      console.error('Newsletter API Error:', error)
-      return NextResponse.json(
-        { 
-          success: false, 
-          error: 'Falha na operação',
-          message: error instanceof Error ? error.message : 'Erro desconhecido'
-        },
-      { status: 500 }
-      )
+      case 'create_segment':
+        if (!segment) {
+          return NextResponse.json(
+            { success: false, error: 'Segment data is required' },
+            { status: 400 }
+          )
+        }
+        
+        const newSegment = await newsletterService.createSegment(segment)
+        return NextResponse.json({ success: true, data: newSegment })
+
+      case 'create_campaign':
+        if (!campaign) {
+          return NextResponse.json(
+            { success: false, error: 'Campaign data is required' },
+            { status: 400 }
+          )
+        }
+        
+        const newCampaign = await newsletterService.createCampaign(campaign)
+        return NextResponse.json({ success: true, data: newCampaign })
+
+      case 'get_stats':
+        const stats = await newsletterService.getNewsletterStats()
+        return NextResponse.json({ success: true, data: stats })
+
+      default:
+        return NextResponse.json(
+          { success: false, error: 'Action not supported' },
+          { status: 400 }
+        )
     }
+
+  } catch (error) {
+    console.error('Newsletter API Error:', error)
+    return NextResponse.json(
+      { 
+        success: false, 
+        error: 'Falha na operação',
+        message: error instanceof Error ? error.message : 'Erro desconhecido'
+      },
+      { status: 500 }
+    )
   }
 }
