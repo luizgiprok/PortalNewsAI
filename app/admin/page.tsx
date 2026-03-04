@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { useNewsletter } from '@/hooks/useNewsletter'
-import { useNewsletterStats } from '@/hooks/useNewsletterStats'
 import { NewsletterStats } from '@/types/newsletter'
 
 export default function AdminDashboard() {
@@ -16,7 +15,7 @@ export default function AdminDashboard() {
     createSegment 
   } = useNewsletter()
   
-  const { stats: detailedStats, loading: statsLoading } = useNewsletterStats()
+  const [statsLoading, setStatsLoading] = useState(false)
 
   const [newSegment, setNewSegment] = useState({
     name: '',
@@ -40,6 +39,12 @@ export default function AdminDashboard() {
       console.error('Error creating segment:', err)
     }
   }
+
+  useEffect(() => {
+    getSegments()
+    setStatsLoading(true)
+    getStats().finally(() => setStatsLoading(false))
+  }, [])
 
   if (loading && statsLoading) {
     return (

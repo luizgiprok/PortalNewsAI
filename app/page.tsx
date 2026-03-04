@@ -8,7 +8,7 @@ import HeroSection from '@/components/HeroSection'
 import NewsletterPreferences from '@/components/NewsletterPreferences'
 import useFeaturedNews from '@/hooks/useNews'
 import useLatestNews from '@/hooks/useNews'
-import useNewsletterStats from '@/hooks/useNewsletterStats'
+import { useNewsletterStats } from '@/hooks/useNewsletter'
 
 export default function HomePage() {
   const { featuredNews, loading: featuredLoading, error: featuredError } = useFeaturedNews()
